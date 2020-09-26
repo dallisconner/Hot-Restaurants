@@ -47,5 +47,18 @@ app.get("/viewtables", function(req, res) {
   res.sendFile(path.join(__dirname, "viewtables.html"));
 });
 
+app.get("/api/", function(req, res) {
+  res.json(data);
+});
+
+app.get("/api/clear", function(req, res) {
+  data.reservations.length = 0;
+  data.waitlist.length = 0;
+  res.json(data);
+});
+
+app.get("/api/visitors", function(req, res) {
+  res.json(visitorCount);
+});
 
 
