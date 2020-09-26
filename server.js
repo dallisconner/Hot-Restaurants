@@ -17,7 +17,7 @@ var path = require("path");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Storing all the tables
+
 var data = {
 	reservations: [],
 	waitlist: [],
@@ -25,7 +25,6 @@ var data = {
 
 var visitorCount = 0;
 
-// Routing
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
   visitorCount++;
