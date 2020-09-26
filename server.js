@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+<<<<<<< HEAD
 
 app.get('/', (req, res) => {
   res.send('Hot Restaurants')
@@ -114,3 +115,5 @@ app.get("/api/remove/:id?", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+=======
+>>>>>>> 7f2dfd3a7bcdc655ea5b32bae91df868674489ff
