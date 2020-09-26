@@ -1,7 +1,10 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const bodyParser = require("body-parser");
+const path = require("path");
 
+<<<<<<< HEAD
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "index.html")
   )
@@ -39,16 +42,63 @@ app.post("/api/reservations", function(req, res) {
   reservations.push(newReservation);
 
   res.json(newReservation);
+=======
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/makereservation", function (req, res) {
+    res.sendFile(path.join(__dirname, "makereservation.html"));
+});
+
+app.get("/viewtables", function (req, res) {
+    res.sendFile(path.join(__dirname, "viewtables.html"));
+>>>>>>> 023eb725c217c760062a33819ce45e0bd64cf94f
 });
 
 app.listen(port, () => {
-  console.log(`Server listening at port: ${port}`)
+    console.log(`Server listening at port: ${port}`)
 })
 
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+// Storing all the tables
+var data = {
+	reservations: [],
+	waitlist: [],
+};
+
+var visitorCount = 0;
+
+// Routing
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+  visitorCount++;
+});
+
+app.get("/makereservation", function(req, res) {
+  res.sendFile(path.join(__dirname, "makereservation.html"));
+});
+
+app.get("/viewtables", function(req, res) {
+  res.sendFile(path.join(__dirname, "viewtables.html"));
+});
+
+app.get("/api/", function(req, res) {
+  res.json(data);
+});
+
+app.get("/api/clear", function(req, res) {
+  data.reservations.length = 0;
+  data.waitlist.length = 0;
+  res.json(data);
+});
+
+app.get("/api/visitors", function(req, res) {
+  res.json(visitorCount);
+});
+
 
