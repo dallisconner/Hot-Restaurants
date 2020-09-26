@@ -31,11 +31,11 @@ app.get("/", function(req, res) {
   visitorCount++;
 });
 
-app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+app.get("/makereservation", function(req, res) {
+  res.sendFile(path.join(__dirname, "makereservation.html"));
 });
 
-app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
+app.get("/viewtables", function(req, res) {
+  res.sendFile(path.join(__dirname, "viewtables.html"));
 });
 
