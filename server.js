@@ -53,4 +53,10 @@ app.get("/api/visitors", function(req, res) {
   res.json(visitorCount);
 });
 
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
+
+
+
 
