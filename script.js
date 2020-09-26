@@ -1,4 +1,6 @@
 var customerArr = [];
+var reservations = [];
+var waitList = [];
 
 class Customer {
     constructor(name, phone, email) {
