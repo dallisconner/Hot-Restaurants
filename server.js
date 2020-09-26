@@ -27,7 +27,7 @@ var visitorCount = 0;
 
 // Routing
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
   visitorCount++;
 });
 
