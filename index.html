@@ -48,6 +48,24 @@
     </p>
   </div>
 
+  <script>
+    $("#viewtables-btn").on("click", function() {
+    $.get("/api/reservations/" + newReservation, function(data) {
+        console.log(data);
+        if (data) {
+          $("#name").text(data.name);
+          $("#phonenumber").text(data.phonenumber);
+          $("#email").text(data.email);
+          $("#uniqueid").text(data.uniqueid);
+        } else {
+          $("#name").text(
+            "Your reservation was not found");
+        }
+      });
+    });
+
+</script>
+
 </body>
 
 </html>
