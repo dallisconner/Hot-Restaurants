@@ -123,6 +123,52 @@ app.get("/api/visitors", function(req, res) {
   res.json(visitorCount);
 });
 
+app.post("/api/new", function(req, res) {
+  var tableData = req.body;
+  console.log(tableData);
+  if (tableData && tableData.name) {
+  	tableData.routeName = tableData.name.replace(/\s+/g, "").toLowerCase();
+  }
+  console.log(tableData);
+
+  if (data.reservations.length < 5) {
+  	data.reservations.push(tableData);
+  } else {
+  	data.waitlist.push(tableData);
+  }
+  
+
+  res.json(tableData);
+});
+
+app.get("/api/remove/:id?", function(req, res) {
+  var tableId = req.params.id;
+
+  if (tableId) {
+    console.log(tableId);
+	for (var i = 0; i < data.reservations.length; i++) {
+	  if (tableId === data.reservations[i].id) {
+	  	data.reservations.splice(i, 1);
+	  	if (data.waitlist.length > 0) {
+	  		var tempTable = data.waitlist.splice(0, 1)[0];
+	  		data.reservations.push(tempTable);
+	  	}
+
+	    return res.json(true);
+	  }
+	}
+	for (var i = 0; i < data.waitlist.length; i++) {
+	  if (tableId === data.waitlist[i].id) {
+	  	data.waitlist.splice(i, 1);
+
+	    return res.json(true);
+	  }
+	}
+	return res.json(false);
+  }
+  return res.json(false);
+});
+
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
